@@ -1,0 +1,23 @@
+# import the packages
+  import pandas as pd
+  import numpy as np
+
+# glob function to indentify the file in directory
+  import glob
+  glob.glob('local/alguma especificação*tipo do arquivo)
+  example:
+    glob.glob("Downloads/sales*.xlsx")
+ > 
+  ['Downloads\\sales-feb-2014.xlsx',
+   'Downloads\\sales-jan-2014.xlsx',
+   'Downloads\\sales-mar-2014.xlsx'] 
+
+# To join the data bases
+  all_data = pd.DataFrame() # transforme to data.frame
+  
+  for f in glob.glob("Downloads/sales*.xlsx"):
+      df = pd.read_excel(f)
+      all_data = all_data.append(df, ignore_index = True)
+
+
+  
