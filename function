@@ -1,5 +1,4 @@
 
-
 def join_data(local_source, table_name, destination):
     '''
     Join_data is to join bases of the same format with same columns values
