@@ -13,7 +13,7 @@
    'Downloads\\sales-mar-2014.xlsx'] 
 
 # To join the data bases
-  all_data = pd.DataFrame() # transforme to data.frame
+  all_data = pd.DataFrame() # create a data.frame
   
   for f in glob.glob("Downloads/sales*.xlsx"):
       df = pd.read_excel(f)
