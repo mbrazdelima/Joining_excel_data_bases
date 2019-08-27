@@ -1,0 +1,25 @@
+#Juntar planilhas
+import pandas as pd
+from glob import glob
+import numpy as np
+
+print('Olá! Esse código irá juntar automaticamente planilhas de excel. \nCertifique que as tabelas possuem as mesmas colunas\n')
+origem = input('\nInsira o endereço da pasta onde estão localizadas as planilhas\n')
+novo_nome = input('\n Escreva o nome que você quer dar a essa nova planilha com as bases juntadas\n')
+onde = input('\nEscreva agora o endereço de onde quer salvar a planilha\n')
+
+join_data = pd.DataFrame()
+
+deonde = r"{}/*.xlsx".format(origem)
+
+for i in glob(deonde):
+    df = pd.read_excel(i)
+    joint_data = join_data.append(df, ignore_index = True)
+
+praonde = '{}\{}.xlsx'.format(onde, novo_nome)
+    
+join_data.to_excel(praonde, index = None, header = True)
+
+print('\nSua base de dados já está pronta! Se encontra em: {} \nBom trabalho'.format(onde))
+
+join_data.head()
