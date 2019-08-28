@@ -5,5 +5,4 @@ I was asked to put together a series of excel spreadsheets. I spent an entire mo
 That same week I could not contain myself. I went creating a code to join tables. 
 Automating repetitive processes today is critical. Others complex process are being automated with AI techniques.
 
-# I will continue to create code to automate processes in my routine
 
