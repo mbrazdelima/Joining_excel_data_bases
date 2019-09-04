@@ -1,11 +1,26 @@
 import tkinter as tk
+from tkinter import filedialog
+
 HEIGHT = 300
 WIDTH = 400
-# import request
-# import Pillow
 
-def test_function():
-    print("Damn!")
+def abrir():
+    origem = filedialog.askdirectory()
+    label4 = tk.Label(frame, text="")
+    label4.place(relx=0.02, rely=0.35, relwidth=1)
+    label4.configure(text=origem)
+
+
+def fechar():
+    salvar = filedialog.asksaveasfile()
+    label5 = tk.Label(frame, text="")
+    label5.place(relx=0.02, rely=0.60, relwidth=1, relheight=0.08)
+    label5.configure(text=salvar)
+
+'''def join():
+        glob.glob(rkgjdoif)
+        for i in glob.glob(
+'''
 
 root = tk.Tk()
 canvas = tk.Canvas(root, height=HEIGHT, width=WIDTH)
@@ -14,28 +29,18 @@ canvas.pack()
 frame = tk.Frame(root)
 frame.place(relwidth=1, relheight=1)
 
-button1 = tk.Button(frame, text='Abrir', fg="black", command=test_function)
+button1 = tk.Button(frame, text='Abrir', fg="black", command=abrir)
 button1.place(relx=0.7, rely=0.25, relwidth=0.15, relheight=0.08)
-button2 = tk.Button(frame, text='Abrir', fg="black")
-button2.place(relx=0.7, rely=0.75, relwidth=0.15, relheight=0.08)
+button2 = tk.Button(frame, text='Abrir', fg="black", command=fechar)
+button2.place(relx=0.7, rely=0.50, relwidth=0.15, relheight=0.08)
+#button3 = tk.Button(frame, text='Join!', fg='black', command=join)
+#button3.place(relx=0.5, rely=0.8)
 
-entry1 = tk.Entry(frame)
-entry1.place(relx=0.15, rely=0.25, relwidth=0.5, relheight=0.08)
-entry2 = tk.Entry(frame)
-entry2.place(relx=0.15, rely=0.50, relwidth=0.5, relheight=0.08)
-entry3 = tk.Entry(frame)
-entry3.place(relx=0.15, rely=0.75, relwidth=0.5, relheight=0.08)
-
-# label0 = tk.Label(frame, text='Junte planilhas\n Selecione a pasta onde se encontram as planilhas\n'
-#                               'Escreve o nome que deseja dar ao novo arquivo\n'
-#                               'Selecione odne deseja salvar')
-# label0.place(relx=0.15, rely=0.05)
 label1 = tk.Label(frame, text='Selecione a pasta')
-label1.place(relx=0.02, rely=0.18, relwidth=0.5)
-label2 = tk.Label(frame, text='Escreva o novo nome da planilha')
-label2.place(relx=0.125, rely=0.43, relwidth=0.5)
+label1.place(relx=0.02, rely=0.25, relwidth=0.5)
 label3 = tk.Label(frame, text='Selecione onde deseja salvar')
-label3.place(relx=0.04, rely=0.68, relwidth=0.6)
+label3.place(relx=0.04, rely=0.50, relwidth=0.6)
+
 root.mainloop()
 
 root
