@@ -1,46 +1,53 @@
-import tkinter as tk
+from tkinter import *
+from glob import glob
+from pandas import *
 from tkinter import filedialog
 
-HEIGHT = 300
-WIDTH = 400
 
-def abrir():
-    origem = filedialog.askdirectory()
-    label4 = tk.Label(frame, text="")
-    label4.place(relx=0.02, rely=0.35, relwidth=1)
-    label4.configure(text=origem)
+def deonde():
+    deonde1 = filedialog.askdirectory()
+    deonde2 = r'{}/*xlsx'.format(deonde1)
+    label1 = Label(root, text='')
+    label1.place(relx=0.2, rely=0.3)
+    label1.configure(text=deonde2)
+    return deonde2
 
 
-def fechar():
-    salvar = filedialog.asksaveasfile()
-    label5 = tk.Label(frame, text="")
-    label5.place(relx=0.02, rely=0.60, relwidth=1, relheight=0.08)
-    label5.configure(text=salvar)
+def praonde():
+    praonde1 = filedialog.asksaveasfilename()
+    praonde2 = r'{}.xlsx'.format(praonde1)
+    label2 = Label(root, text='')
+    label2.place(relx=0.2, rely=0.6)
+    label2.configure(text=praonde2)
+    return praonde2
 
-'''def join():
-        glob.glob(rkgjdoif)
-        for i in glob.glob(
-'''
 
-root = tk.Tk()
-canvas = tk.Canvas(root, height=HEIGHT, width=WIDTH)
+def join():
+    joindata = DataFrame()
+    lista = deonde()
+    for i in glob(lista):
+        print(i)
+        df = read_excel(i)
+        joindata = joindata.append(df, sort=False, ignore_index=True)
+    praonde4 = praonde()
+    joindata.to_excel(praonde4)
+
+
+w = 500
+h = 300
+
+root = Tk()
+root.title(" Join data ")
+canvas = Canvas(root, height=h, width=w)
 canvas.pack()
 
-frame = tk.Frame(root)
-frame.place(relwidth=1, relheight=1)
+button1 = Button(root, text=" Juntar ", command=join)
+button1.place(relx=0.40, rely=0.8, relwidth=0.2)
 
-button1 = tk.Button(frame, text='Abrir', fg="black", command=abrir)
-button1.place(relx=0.7, rely=0.25, relwidth=0.15, relheight=0.08)
-button2 = tk.Button(frame, text='Abrir', fg="black", command=fechar)
-button2.place(relx=0.7, rely=0.50, relwidth=0.15, relheight=0.08)
-#button3 = tk.Button(frame, text='Join!', fg='black', command=join)
-#button3.place(relx=0.5, rely=0.8)
 
-label1 = tk.Label(frame, text='Selecione a pasta')
-label1.place(relx=0.02, rely=0.25, relwidth=0.5)
-label3 = tk.Label(frame, text='Selecione onde deseja salvar')
-label3.place(relx=0.04, rely=0.50, relwidth=0.6)
+label3 = Label(text='Pasta de origem:')
+label3.place(relx=0.2, rely=0.2)
+label4 = Label(root, text='Pasta de destino:')
+label4.place(relx=0.2, rely=0.5)
 
 root.mainloop()
-
-root
